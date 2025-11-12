@@ -1,15 +1,9 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import ClubAdminLayout from '@/Layouts/ClubAdminLayout';
 import { Head } from '@inertiajs/react';
 
 export default function ClubAdminDashboard() {
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Club Admin Dashboard
-                </h2>
-            }
-        >
+        <ClubAdminLayout header="Club Admin Dashboard">
             <Head title="Club Admin Dashboard" />
 
             <div className="py-12">
@@ -45,6 +39,6 @@ export default function ClubAdminDashboard() {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </ClubAdminLayout>
     );
 }
