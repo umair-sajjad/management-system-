@@ -11,6 +11,24 @@ export default function AuthenticatedLayout({ header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
+    // Determine dashboard route based on user role
+    const getDashboardRoute = () => {
+        switch (user.role) {
+            case 'admin':
+                return 'admin.dashboard';
+            case 'student':
+                return 'student.dashboard';
+            case 'faculty':
+                return 'faculty.dashboard';
+            case 'club_admin':
+                return 'club-admin.dashboard';
+            default:
+                return 'profile.edit'; // Fallback to profile if no role matched
+        }
+    };
+
+    const dashboardRoute = getDashboardRoute();
+
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="border-b border-gray-100 bg-white">
@@ -25,8 +43,8 @@ export default function AuthenticatedLayout({ header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
+                                    href={route(dashboardRoute)}
+                                    active={route().current(dashboardRoute)}
                                 >
                                     Dashboard
                                 </NavLink>
@@ -129,8 +147,8 @@ export default function AuthenticatedLayout({ header, children }) {
                 >
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
-                            href={route('dashboard')}
-                            active={route().current('dashboard')}
+                            href={route(dashboardRoute)}
+                            active={route().current(dashboardRoute)}
                         >
                             Dashboard
                         </ResponsiveNavLink>

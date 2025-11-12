@@ -28,6 +28,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/students', [AdminController::class, 'manageStudents'])->name('students');
     Route::get('/roles', [AdminController::class, 'manageRoles'])->name('roles');
+    Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
+    Route::patch('/users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
+    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
     Route::get('/events', [AdminController::class, 'manageEvents'])->name('events');
     Route::get('/discussions', [AdminController::class, 'discussions'])->name('discussions');
     Route::get('/feedbacks', [AdminController::class, 'feedbacks'])->name('feedbacks');
