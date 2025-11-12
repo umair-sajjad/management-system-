@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -44,5 +45,37 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the student profile associated with the user.
+     */
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    /**
+     * Get the admin profile associated with the user.
+     */
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
+    /**
+     * Get the faculty profile associated with the user.
+     */
+    public function faculty()
+    {
+        return $this->hasOne(Faculty::class);
+    }
+
+    /**
+     * Get the club admin profile associated with the user.
+     */
+    public function clubAdmin()
+    {
+        return $this->hasOne(ClubAdmin::class);
     }
 }
