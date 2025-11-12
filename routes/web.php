@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/students', [AdminController::class, 'manageStudents'])->name('students');
+    Route::post('/students', [AdminController::class, 'storeStudent'])->name('students.store');
+    Route::patch('/students/{user}', [AdminController::class, 'updateStudent'])->name('students.update');
+    Route::delete('/students/{user}', [AdminController::class, 'destroyStudent'])->name('students.destroy');
     Route::get('/roles', [AdminController::class, 'manageRoles'])->name('roles');
     Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
     Route::patch('/users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
